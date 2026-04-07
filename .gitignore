@@ -1,5 +1,5 @@
 venv/
 .ipynb_checkpoints/
-__pychache__/
+__pycache__/
 *.pyc
-.Ds_Store
+.DS_Store
