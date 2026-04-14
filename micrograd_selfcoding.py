@@ -117,6 +117,8 @@ class Neuron:
  
         return y.tanh()
 
+    def parameters(self):
+        return self.w + [self.b]
 
 class Layer:
   
@@ -128,6 +130,8 @@ class Layer:
     def __call__(self, x):
         return [i(x) for i in self.neurons]
 
+    def parameters(self):
+        return [a for i in self.neurons for a in i.parameters()]
 
 class MLP:
 
@@ -136,7 +140,7 @@ class MLP:
         self.nin = nin
         self.nouts = nouts
         sz = [nin] + nouts
-        self.layers = [Layer(sz[i], sz[i+1]) for i in range(len(sz-1))]
+        self.layers = [Layer(sz[i], sz[i+1]) for i in range(len(nouts))]
 
     def __call__(self, x):
         
@@ -144,7 +148,10 @@ class MLP:
             x = layer(x)
 
         return x[0] if len(x) == 1 else x
-            
 
+    def parameters(self):
+        return [a for i in self.layers for a in i.parameters()]
 
-        
+    def zero_grad(self):
+        for p in self.parameters():
+            p.grad = 0.00
