@@ -39,6 +39,20 @@ network can learn what a counting table knows — purely through gradient descen
 
 ---
 
+## 3. Makemore Part 2: MLP — `03_makemore_part2/mlp_scratch.ipynb`
+
+A Multi-Layer Perceptron (MLP) character-level language model, based on the architecture described by Bengio et al. (2003). Built completely from scratch using fundamental PyTorch tensor operations.
+
+- **Architecture**: Transitions from a simple bigram model to an N-gram model using a sliding context window (e.g., predicting the next character based on the previous 3 characters).
+- **Embeddings**: Implements a learnable embedding layer (lookup table) that maps discrete characters into a continuous multi-dimensional vector space.
+- **Layers**: Features a hidden layer with `tanh` non-linearity and an output layer for logit generation.
+- **Training**: Introduces Minibatches and Stochastic Gradient Descent (SGD) to efficiently train the network on the full dataset without performance bottlenecks.
+- **Implementation Details**: Focuses on manual tensor dimension management, broadcasting rules, and understanding the mathematical flow from inputs to the final cross-entropy loss.
+
+**Key result**: Significantly improves the quality and structure of the generated human-like names compared to the basic bigram model, effectively capturing deeper character relationships through the hidden layer.
+
+---
+
 ## Based on
 
 Andrej Karpathy — [Neural Networks: Zero to Hero](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ)
